@@ -17,7 +17,7 @@ Servo servo;
 RTC_DS3231 rtc;
 DHT dht(dht_data, DHTTYPE);
 
-char t[32];
+char t[32];      //temporary variable
 char auth[] = "zXpl-OYi6yBHrULY83m5PEmCzFbETOmT";
 char ssid[] = "POLAR";
 char pass[] = "PerfectParadox9";
@@ -61,7 +61,7 @@ void loop()
   long rtc_in_sec = (3600 * now.hour() + 60 * now.minute());
   float temp = dht.readTemperature();
 
-    // ================================ //
+  // ================================ //
   sprintf(t, "%02d:%02d:%02d",  now.hour(), now.minute(), now.second()); /////////////
   Serial.print(F("Time: ")); ////////////
   Serial.println(t); //////////////
@@ -87,8 +87,6 @@ void loop()
   Blynk.virtualWrite(V6, temp);
   Blynk.virtualWrite(V0, dis);
 }
-
-// ====================================================== //
 
 void servo_mov(int portion)
 {
