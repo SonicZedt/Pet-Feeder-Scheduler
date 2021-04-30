@@ -9,15 +9,15 @@
 #define us_trigger D6
 #define us_echo D7
 #define dht_data 3
-#define fan 9
-#define led 10
+#define fan D3
+#define led D4
 #define DHTTYPE DHT11
 
 Servo servo;
 RTC_DS3231 rtc;
 DHT dht(dht_data, DHTTYPE);
 
-char t[32];      //temporary variable
+char t[32];
 char auth[] = "zXpl-OYi6yBHrULY83m5PEmCzFbETOmT";
 char ssid[] = "POLAR";
 char pass[] = "PerfectParadox9";
@@ -37,7 +37,7 @@ void setup()
 {
   Serial.begin(9600);
   Blynk.begin(auth, ssid, pass);
-  Wire.begin(D1, D2);     //(SDA, SCL)
+  Wire.begin(D1, D2);     //(SCL, SDA)
   rtc.begin();
   dht.begin();
   
@@ -61,7 +61,7 @@ void loop()
   long rtc_in_sec = (3600 * now.hour() + 60 * now.minute());
   float temp = dht.readTemperature();
 
-  // ================================ //
+    // ================================ //
   sprintf(t, "%02d:%02d:%02d",  now.hour(), now.minute(), now.second()); /////////////
   Serial.print(F("Time: ")); ////////////
   Serial.println(t); //////////////
@@ -81,11 +81,39 @@ void loop()
   if ((rtc_in_sec == set_time1) && (now.second() < portion1)) servo_mov(portion1);
   else if((rtc_in_sec == set_time2) && (now.second() < portion2)) servo_mov(portion2);
   else servo.write(0);
-  
+
+  if (temp > set_temp) temp_control(LOW, HIGH);
+  else if (temp < set_temp) temp_control(HIGH, LOW);
+  else temp_control(HIGH, HIGH);
+ 
   level();
-  
+ 
   Blynk.virtualWrite(V6, temp);
   Blynk.virtualWrite(V0, dis);
+}
+
+// ====================================================== //
+
+void temp_control(char fan_val, char led_val)
+{
+  digitalWrite(fan, fan_val);
+  digitalWrite(led, led_val);
+
+  if(fan_val == LOW && led_val == HIGH)
+  {
+    status_fan.on();
+    status_led.off();
+  }
+  else if(fan_val == HIGH && led_val == LOW)
+  {
+    status_fan.off();
+    status_led.on();
+  }
+  else 
+  {
+    status_fan.off();
+    status_led.off();
+  }
 }
 
 void servo_mov(int portion)
