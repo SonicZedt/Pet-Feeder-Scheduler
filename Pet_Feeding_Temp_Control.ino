@@ -6,11 +6,12 @@
 #include <DHT.h>
 
 #define BLYNK_PRINT Serial
-#define us_trigger D6
-#define us_echo D7
 #define dht_data 3
 #define fan D3
 #define led D4
+#define us_trigger D6
+#define us_echo D7
+#define buzz D8
 #define DHTTYPE DHT11
 
 Servo servo;
@@ -41,10 +42,11 @@ void setup()
   rtc.begin();
   dht.begin();
   
-  pinMode(us_echo, INPUT);
-  pinMode(us_trigger, OUTPUT);
   pinMode(fan, OUTPUT);
   pinMode(led, OUTPUT);
+  pinMode(us_echo, INPUT);
+  pinMode(us_trigger, OUTPUT);
+  pinMode(buzz, OUTPUT);
 
   rtc.adjust(DateTime(F(__DATE__),F(__TIME__)));
   
@@ -127,13 +129,22 @@ void servo_mov(int portion)
 
 int level()
 {
+  digitalWrite(buzz, HIGH);
+  
   digitalWrite(us_trigger, LOW);
   delay(1000);
   digitalWrite(us_trigger, HIGH);
   delay(2000);
   digitalWrite(us_trigger, LOW);
 
-  dis = (pulseIn(us_echo, HIGH)/58.2) + 2;
+  dis = (pulseIn(us_echo, HIGH)/58.2);
+
+  if(dis >= 6)
+  {
+    digitalWrite(buzz, LOW);
+    delay(250);
+    digitalWrite(buzz, HIGH);
+  }
   
   return dis;
 }
