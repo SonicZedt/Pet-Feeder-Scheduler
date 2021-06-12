@@ -18,7 +18,6 @@ Servo servo;
 RTC_DS3231 rtc;
 DHT dht(dht_data, DHTTYPE);
 
-char t[32];
 char auth[] = "zXpl-OYi6yBHrULY83m5PEmCzFbETOmT";
 char ssid[] = "POLAR";
 char pass[] = "PerfectParadox9";
@@ -38,7 +37,7 @@ void setup()
 {
   Serial.begin(9600);
   Blynk.begin(auth, ssid, pass);
-  Wire.begin(D1, D2);     //(SCL, SDA)
+  Wire.begin(D1, D2);     //(SDA, SCL)
   rtc.begin();
   dht.begin();
   
@@ -62,23 +61,6 @@ void loop()
   DateTime now = rtc.now();
   long rtc_in_sec = (3600 * now.hour() + 60 * now.minute());
   float temp = dht.readTemperature();
-
-    // ================================ //
-  sprintf(t, "%02d:%02d:%02d",  now.hour(), now.minute(), now.second()); /////////////
-  Serial.print(F("Time: ")); ////////////
-  Serial.println(t); //////////////
-  Serial.print("Set time 1 : ");
-  Serial.println(set_time1);
-  Serial.print("Set time 2 : ");
-  Serial.println(set_time2);
-  Serial.print("RTC in sec :");
-  Serial.println(rtc_in_sec);
-  Serial.print("Set Temp : ");
-  Serial.println(set_temp);
-  Serial.print("Temp : ");
-  Serial.println(temp);
-  Serial.println("=============");
-  // ================================ //
   
   if ((rtc_in_sec == set_time1) && (now.second() < portion1)) servo_mov(portion1);
   else if((rtc_in_sec == set_time2) && (now.second() < portion2)) servo_mov(portion2);
@@ -93,8 +75,6 @@ void loop()
   Blynk.virtualWrite(V6, temp);
   Blynk.virtualWrite(V0, dis);
 }
-
-// ====================================================== //
 
 void temp_control(char fan_val, char led_val)
 {
@@ -132,14 +112,14 @@ int level()
   digitalWrite(buzz, HIGH);
   
   digitalWrite(us_trigger, LOW);
-  delay(1000);
+  delayMicroseconds(2);
   digitalWrite(us_trigger, HIGH);
-  delay(2000);
+  delayMicroseconds(10);
   digitalWrite(us_trigger, LOW);
 
-  dis = (pulseIn(us_echo, HIGH)/58.2);
+  dis = (pulseIn(us_echo, HIGH)/58.3);
 
-  if(dis >= 6)
+  if(dis >= 9)
   {
     digitalWrite(buzz, LOW);
     delay(250);
