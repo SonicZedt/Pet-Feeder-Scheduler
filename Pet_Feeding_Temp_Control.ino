@@ -50,7 +50,7 @@ void setup()
   rtc.adjust(DateTime(F(__DATE__),F(__TIME__)));
   
   servo.attach(D5);
-  servo.write(0);
+  servo.write(90);
 }
 
 
@@ -102,9 +102,9 @@ void servo_mov(int portion)
 {
   int portion_delay = portion * 1000;
   
-  servo.write(45);
+  servo.write(90);
   delay(portion_delay);
-  servo.write(0);
+  servo.write(45);
 }
 
 int level()
