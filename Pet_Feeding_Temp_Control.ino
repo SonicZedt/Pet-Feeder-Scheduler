@@ -64,7 +64,7 @@ void loop()
   
   if ((rtc_in_sec == set_time1) && (now.second() < portion1)) servo_mov(portion1);
   else if((rtc_in_sec == set_time2) && (now.second() < portion2)) servo_mov(portion2);
-  else servo.write(0);
+  else servo.write(90);
 
   if (temp > set_temp) temp_control(LOW, HIGH);
   else if (temp < set_temp) temp_control(HIGH, LOW);
@@ -102,9 +102,9 @@ void servo_mov(int portion)
 {
   int portion_delay = portion * 1000;
   
-  servo.write(90);
-  delay(portion_delay);
   servo.write(45);
+  delay(portion_delay);
+  servo.write(90);
 }
 
 int level()
