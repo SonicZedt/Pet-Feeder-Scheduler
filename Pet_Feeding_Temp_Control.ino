@@ -37,7 +37,7 @@ void setup()
 {
   Serial.begin(9600);
   Blynk.begin(auth, ssid, pass);
-  Wire.begin(D1, D2);     //(SDA, SCL)
+  Wire.begin(5, 4);     //(SDA, SCL)
   rtc.begin();
   dht.begin();
   
@@ -46,13 +46,12 @@ void setup()
   pinMode(us_echo, INPUT);
   pinMode(us_trigger, OUTPUT);
   pinMode(buzz, OUTPUT);
-
-  rtc.adjust(DateTime(F(__DATE__),F(__TIME__)));
   
+  //rtc.adjust(DateTime(F(__DATE__),F(__TIME__)));
+ 
   servo.attach(D5);
   servo.write(90);
 }
-
 
 void loop()
 {  
