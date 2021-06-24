@@ -22,7 +22,7 @@ char auth[] = "zXpl-OYi6yBHrULY83m5PEmCzFbETOmT";
 char ssid[] = "POLAR";
 char pass[] = "PerfectParadox9";
 float set_temp;
-int dis, portion1, portion2;
+int dismm, portion1, portion2;
 long set_time1, set_time2;
 
 BLYNK_WRITE(V1){set_time1 = param.asLong();}
@@ -70,9 +70,9 @@ void loop()
   else temp_control(HIGH, HIGH);
  
   level();
- 
+  
   Blynk.virtualWrite(V6, temp);
-  Blynk.virtualWrite(V0, dis);
+  Blynk.virtualWrite(V0, dismm);
 }
 
 void temp_control(char fan_val, char led_val)
@@ -116,14 +116,15 @@ int level()
   delayMicroseconds(10);
   digitalWrite(us_trigger, LOW);
 
-  dis = (pulseIn(us_echo, HIGH)/58.3);
+  float dis = (pulseIn(us_echo, HIGH)/58.3);
+  dismm = dis*10;
 
-  if(dis >= 9)
+  if(dismm >= 95)
   {
     digitalWrite(buzz, LOW);
     delay(250);
     digitalWrite(buzz, HIGH);
   }
-  
-  return dis;
+    
+  return dismm;
 }
