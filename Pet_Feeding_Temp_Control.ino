@@ -18,9 +18,9 @@ Servo servo;
 RTC_DS3231 rtc;
 DHT dht(dht_data, DHTTYPE);
 
-char auth[] = "zXpl-OYi6yBHrULY83m5PEmCzFbETOmT";
-char ssid[] = "POLAR";
-char pass[] = "PerfectParadox9";
+char auth[] = "YOUR_AUTH";
+char ssid[] = "WIFI_NAME";
+char pass[] = "WIFI_PASS";
 float set_temp;
 int dismm, portion1, portion2;
 long set_time1, set_time2;
