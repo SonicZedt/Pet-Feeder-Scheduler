@@ -7,13 +7,25 @@ I guess, or whatever it called.
 Arduino-like such as NodeMCU ESP8266 (the one used on this project), Wemos, or anything that could use arduino IDE and ESP8266 as Wi-FI module.
 
 ### Input:
-RTC DS3231, Ultrasonic, DHT11
+RTC DS3231, Ultrasonic, DHT11, and Blynk.
 
 ### Output:
-Servo, LED, Fan, Buzzer. Relay is optional and needed if LED is replace with light bulb and bigger fan.
+Servo, LED, Fan, Buzzer, and Blynk. Relay is optional and needed if LED is replace with light bulb and bigger fan.
 
 ### Activator:
 im using +6V adaptor, + connected to Vin and - Connected to GND on microcontroller. If you're using relay, you need a microcontroler with atleast +5V output on it's pin.
+
+### Blynk:
+Full Screenshot:
+![Full Screenshot](https://i.ibb.co/HHJPJCs/Data5-blynk.jpg)
+
+Input widget configuration :
+
+![Input widget](https://i.ibb.co/f2xD0nr/blynk-input.png)
+
+Output widget configuration :
+
+![Output widget](https://i.ibb.co/B6dy1qG/blynk-output.png)
 
 ## ---------------------------------------------------------------------------------------
 
