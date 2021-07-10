@@ -46,7 +46,8 @@ void setup()
   pinMode(us_echo, INPUT);
   pinMode(us_trigger, OUTPUT);
   pinMode(buzz, OUTPUT);
-  
+
+  //uncomment code below to make RTC adjust it's time according to your PC time
   //rtc.adjust(DateTime(F(__DATE__),F(__TIME__)));
  
   servo.attach(D5);
