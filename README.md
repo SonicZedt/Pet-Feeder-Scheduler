@@ -1,4 +1,5 @@
 # Pet-Feeder-Scheduler
+Actually, this also comes with temperature control (fan and led/light bulb).
 
 ## Diagram Block
 I guess, or whatever it called.
@@ -13,7 +14,7 @@ RTC DS3231, Ultrasonic, DHT11, and Blynk.
 Servo, LED, Fan, Buzzer, and Blynk. Relay is optional and needed if LED is replace with light bulb and bigger fan.
 
 ### Activator:
-im using +6V adaptor, + connected to Vin and - Connected to GND on microcontroller. If you're using relay, you need a microcontroler with atleast +5V output on it's pin.
+im using +6V adaptor, + connected to Vin and - Connected to GND on microcontroller. If you're using relay, you need to use a microcontroler with atleast +5V output on it's pin.
 
 ### Blynk:
 Full Screenshot:
