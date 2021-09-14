@@ -8,24 +8,22 @@ I guess, or whatever it called.
 | :--          | :--       |
 |**Activator** | +6V adaptor                                |
 |**Input**     | RTC DS3231, Ultrasonic, DHT11, and Blynk.  |
-|**Process**   | Arduino-like                               |
+|**Process**   | Microcontroller                             |
 |**Output**    | Servo, LED, Fan, Buzzer, Relay, and Blynk. |
 
-Arduino-like such as NodeMCU ESP8266 (the one used on this project), Wemos, or anything that could use arduino IDE and ESP8266 as Wi-FI module.
-Relay is optional and needed if LED is replace with light bulb and bigger fan.
-Im using +6V adaptor in this project, + connected to Vin and - Connected to GND on microcontroller.
+* Microcontroller is any arduino-like such as NodeMCU ESP8266 (the one used on this project), Wemos, or anything that could use arduino IDE and ESP8266 as Wi-FI module.
+* Relay is optional and needed if LED is replace with light bulb and bigger fan.
+* Im using +6V adaptor in this project, + connected to Vin and - Connected to GND on microcontroller.
 
 ### Blynk:
 Full Screenshot:
-![Full Screenshot](https://i.ibb.co/HHJPJCs/Data5-blynk.jpg)
+[See image](https://i.ibb.co/HHJPJCs/Data5-blynk.jpg)
 
 Input widget configuration :
-
-![Input widget](https://i.ibb.co/f2xD0nr/blynk-input.png)
+[See image](https://i.ibb.co/f2xD0nr/blynk-input.png)
 
 Output widget configuration :
-
-![Output widget](https://i.ibb.co/B6dy1qG/blynk-output.png)
+[See image](https://i.ibb.co/B6dy1qG/blynk-output.png)
 
 ### RTC Time Adjustment
 To adjust RTC time according to your local (PC) time, uncomment this code: `rtc.adjust(DateTime(F(__DATE__),F(__TIME__)));` and upload it to your microcontroller.
