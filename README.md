@@ -15,7 +15,7 @@ I guess, or whatever it called.
 * Relay is optional and needed if LED is replace with light bulb and bigger fan.
 * Im using +6V adaptor in this project, + connected to Vin and - Connected to GND on microcontroller.
 
-### Blynk:
+### Blynk Widget Configuration:
 Full Screenshot:
 [See image](https://i.ibb.co/HHJPJCs/Data5-blynk.jpg)
 
