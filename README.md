@@ -8,8 +8,8 @@ I guess, or whatever it called.
 | :--          | :--       |
 |**Activator** | +6V adaptor                                |
 |**Input**     | RTC DS3231, Ultrasonic, DHT11, and Blynk.  |
-|**Process**   | Microcontroller                             |
-|**Output**    | Servo, LED, Fan, Buzzer, Relay, and Blynk. |
+|**Process**   | Microcontroller and Relay                  |
+|**Output**    | Servo, LED, Fan, Buzzer, and Blynk. |
 
 * Microcontroller is any arduino-like such as NodeMCU ESP8266 (the one used on this project), Wemos, or anything that could use arduino IDE and ESP8266 as Wi-FI module.
 * Relay is optional and needed if LED is replace with light bulb and bigger fan.
